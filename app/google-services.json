@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "427587375812",
+    "firebase_url": "https://authox-7dc6e.firebaseio.com",
+    "project_id": "authox-7dc6e",
+    "storage_bucket": "authox-7dc6e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:427587375812:android:8ff8cb4e21461f45",
+        "android_client_info": {
+          "package_name": "com.example.root.authex"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "427587375812-h0es1pjtc5563h79vvvdfachrfgancr3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.root.authex",
+            "certificate_hash": "e1ec1bec86f34466fa56daea58a9e54be9227884"
+          }
+        },
+        {
+          "client_id": "427587375812-jbob5jj1cc0ta5j1rmjg18s198egmorm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDXOEkWDDQE2UxGgDcgd_8LQUELGXl7Zpk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "427587375812-jbob5jj1cc0ta5j1rmjg18s198egmorm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
