@@ -63,40 +63,30 @@
         android:id="@+id/verify_number"
         android:textColor="#FF6C00"/>
 
-    <TextView
+    <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="50dip"
         android:layout_marginRight="50dip"
-        android:layout_marginTop="20dip"
-        
-        android:paddingLeft="20dip"
-        android:text="Optional"
-        android:textColor="#FF6C00"
-        android:textSize="20dip" />
-    <LinearLayout
+        android:layout_marginTop="10dip"
+        android:id="@+id/address"
+        android:hint="address"
+        android:paddingLeft="20dip" />
+
+    <EditText
         android:layout_width="match_parent"
-        android:layout_height="90dip"
-        android:background="@drawable/rectangle_border"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="50dip"
-        android:layout_marginRight="50dip">
+        android:layout_marginRight="50dip"
+        android:layout_marginTop="10dip"
+        android:id="@+id/adhaarnumber"
+        android:hint="adhaarnumber"
+        android:paddingLeft="20dip" />
 
 
-        <EditText
-            android:id="@+id/address"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dip"
-            android:layout_marginTop="10dip"
-            android:layout_marginRight="10dip"
-            android:layout_weight="1"
-            android:ems="10"
-            android:hint="address"
-            android:backgroundTint="#eeeeee"
-            android:inputType="textMultiLine"
-            android:textSize="16dip" />
 
-    </LinearLayout>
+
+
 
     <LinearLayout
         android:layout_width="match_parent"

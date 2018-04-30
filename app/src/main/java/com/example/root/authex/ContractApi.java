@@ -40,14 +40,14 @@ class ContractApi extends AsyncTask<String, Void, String> {
 
 
         try {
-            if(Objects.equals(type, "kyc")){
-                port = "3500";
+            if(Objects.equals(type, "cards")){
+                port = "3800";
             }
             else if(Objects.equals(type, "coin")){
                 port = "3600";
             }
 
-            url = new URL("http://54.91.189.21:"+port+"/"+method+"/"+parameters);
+            url = new URL("http://"+new Constants().ServerIP+":"+port+"/"+method+"/"+parameters);
             //url = new URL("http://162.144.124.122/~lokasotech/stage_v2/app_panel/admin/admin_panel/authprotocol/decoder.php?crypted="+crypted+"&pubkey="+pubkey);
             System.out.println(url);
         } catch (MalformedURLException e) {

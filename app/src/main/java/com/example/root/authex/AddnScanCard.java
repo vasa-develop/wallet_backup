@@ -71,10 +71,10 @@ public class AddnScanCard extends AppCompatActivity {
 
 
 
-        cardsAdapter = new CardsAdapter(this, cardsList,email, mno, address, price, socketindex);
+       /* cardsAdapter = new CardsAdapter(this, cardsList,email, mno, address, price, socketindex);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        recyclerView.setAdapter(cardsAdapter);
+        recyclerView.setAdapter(cardsAdapter);*/
 
 
 
@@ -121,13 +121,10 @@ public class AddnScanCard extends AppCompatActivity {
 
         if(bundle != null) {
             System.out.println("yprice: "+price);
-            Cards cards1 = new Cards(card_res[0], Cardname, email, mno, address, price, socketindex,"identity");
-            cardsList.add(cards1);
+            /*Cards cards1 = new Cards(card_res[0], price, socketindex,"identity");
+            cardsList.add(cards1);*/
 
         }
-
-
-
         cardsAdapter.notifyDataSetChanged();
     }
 }

@@ -18,14 +18,11 @@ public class Cards {
 
     }
 
-    public Cards(int image_id, String card_name, String email, String mno, String address, String price, String socketindex, String cardtype) {
+    public Cards(int image_id, String price, String socketindex, String card_name,String cardtype) {
         this.image_id = image_id;
-        this.card_name = card_name;
-        this.email = email;
-        this.mno = mno;
-        this.address = address;
         this.price = price;
         this.socketindex = socketindex;
+        this.card_name = card_name;
         this.cardtype = cardtype;
     }
 

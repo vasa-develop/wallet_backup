@@ -14,8 +14,8 @@ import jnr.ffi.annotations.In;
 
 public class ChooseCard extends AppCompatActivity {
 
-    private TextView t1, t2, t3;
-    private ImageView img1, img2, img3;
+    private TextView t1, t2;
+    private ImageView img1, img2;
     private int option;
     private Button next;
 
@@ -26,11 +26,10 @@ public class ChooseCard extends AppCompatActivity {
 
         t1 = (TextView) findViewById(R.id.t1);
         t2 = (TextView) findViewById(R.id.t2);
-        t3 = (TextView) findViewById(R.id.t3);
 
         img1 = (ImageView) findViewById(R.id.img1);
         img2 = (ImageView) findViewById(R.id.img2);
-        img3 = (ImageView) findViewById(R.id.img3);
+
 
         next = (Button) findViewById(R.id.next);
 
@@ -40,7 +39,7 @@ public class ChooseCard extends AppCompatActivity {
                 option = 0;
                 img1.setImageResource(R.drawable.selected_circle);
                 img2.setImageResource(R.drawable.unselected_circle);
-                img3.setImageResource(R.drawable.unselected_circle);
+
             }
         });
 
@@ -50,19 +49,11 @@ public class ChooseCard extends AppCompatActivity {
                 option = 1;
                 img1.setImageResource(R.drawable.unselected_circle);
                 img2.setImageResource(R.drawable.selected_circle);
-                img3.setImageResource(R.drawable.unselected_circle);
+
             }
         });
 
-        t3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                option = 2;
-                img1.setImageResource(R.drawable.unselected_circle);
-                img2.setImageResource(R.drawable.unselected_circle);
-                img3.setImageResource(R.drawable.selected_circle);
-            }
-        });
+
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override

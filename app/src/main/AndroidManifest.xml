@@ -15,13 +15,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity" />
         <activity android:name=".LoggedIn" />
-        <activity android:name=".AddnScanCard">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".AddnScanCard" />
         <activity android:name=".ChooseCard" />
         <activity android:name=".CardDetails">
             <intent-filter>
@@ -47,7 +41,19 @@
         <activity android:name=".YourInformation" />
         <activity android:name=".SelectPaymentCard" />
         <activity android:name=".ScanQrCode" />
-        <activity android:name=".CardBalance"></activity>
+        <activity android:name=".CardBalance" />
+        <activity
+            android:name=".AddnScanCards"
+            android:label="@string/title_activity_addn_scan_cards"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".ShowCardDetails" />
+        <activity android:name=".SubscriptionDetails"></activity>
     </application>
 
 </manifest>

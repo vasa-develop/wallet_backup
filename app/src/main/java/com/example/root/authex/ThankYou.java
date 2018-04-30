@@ -63,7 +63,7 @@ public class ThankYou extends AppCompatActivity {
 
             WebSocket ws = null;
             try {
-                ws = factory.createSocket("ws://"+"54.91.189.21:4000");
+                ws = factory.createSocket("ws://"+new Constants().ServerIP+":4000");
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -126,8 +126,9 @@ public class ThankYou extends AppCompatActivity {
                     JSONObject json = new JSONObject();
 
                     try {
-                        useraddr = "0x26aA62a120Bc9183290639A0980Ce88c51f0Ba2a";
+                        useraddr = new Constants().Address;
                         System.out.println("index: "+socketindex+" useraddr: "+useraddr);
+                        json.put("type","info");
                         json.put("index", socketindex);
                         json.put("useraddr", useraddr);
                     } catch (JSONException e) {

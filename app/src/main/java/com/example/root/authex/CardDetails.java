@@ -51,7 +51,7 @@ import javax.net.ssl.HttpsURLConnection;
 public class CardDetails extends AppCompatActivity {
 
     private Button submit;
-    private EditText email,mno,address;
+    private EditText email,mno,address,adhaarnumber;
     private String TAG = "Firebase";
     private FirebaseAuth mAuth;
     private String mVerificationId,semail,smno,saddress;
@@ -63,6 +63,7 @@ public class CardDetails extends AppCompatActivity {
     private FirebaseUser firebaseUser;
     private static int PER_LOGIN = 1000;
     private boolean verificationEmailSent = false;
+    private int card_index;
 
 
     @Override
@@ -82,6 +83,18 @@ public class CardDetails extends AppCompatActivity {
         address = (EditText) findViewById(R.id.address);
         verify_email = (TextView) findViewById(R.id.verify_email);
         verify_number = (TextView) findViewById(R.id.verify_number);
+        adhaarnumber = (EditText) findViewById(R.id.adhaarnumber);
+
+        Intent i = getIntent();
+        final Bundle bundle = i.getExtras();
+        if(bundle != null){
+            card_index = bundle.getInt("card_name");
+            if(card_index==0){
+                adhaarnumber.setVisibility(View.INVISIBLE);
+            }
+            System.out.println(bundle.getInt("card_name"));
+        }
+
 
         verify_number.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -152,11 +165,7 @@ public class CardDetails extends AppCompatActivity {
         });
 
 
-        Intent i = getIntent();
-        final Bundle bundle = i.getExtras();
-        if(bundle != null){
-            System.out.println(bundle.getInt("card_name"));
-        }
+
 
         submit = (Button) findViewById(R.id.submit);
         submit.setOnClickListener(new View.OnClickListener() {
@@ -168,12 +177,23 @@ public class CardDetails extends AppCompatActivity {
                 saddress = address.getText().toString();
 
 
-                /*ContractApi contractApi = new ContractApi("kyc","AddOrg","0x26aA62a120Bc9183290639A0980Ce88c51f0Ba2a/"+semail+"/"+smno+"/"+saddress+"/city/state/country/website/true/true/true");
-                contractApi.execute();*/
-                new SendPostRequest().execute();
+                if(card_index==0){
+                    SendPostRequest sendPostRequest = new SendPostRequest();
+                    sendPostRequest.method = "AddCard";
+                    sendPostRequest.cardtype = "simple";
+                    sendPostRequest.execute();
+                }
+                else if(card_index==1){
+                    SendPostRequest sendPostRequest = new SendPostRequest();
+                    sendPostRequest.method = "AddCard";
+                    sendPostRequest.cardtype = "id";
+                    sendPostRequest.execute();
+                }
 
 
-                Intent i = new Intent(CardDetails.this,AddnScanCard.class);
+
+
+                Intent i = new Intent(CardDetails.this,AddnScanCards.class);
 
                 Bundle bundle1 = new Bundle();
                 bundle1.putInt("card_name",bundle.getInt("card_name"));
@@ -324,26 +344,31 @@ public class CardDetails extends AppCompatActivity {
 
     public class SendPostRequest extends AsyncTask<String, Void, String> {
 
+        public String method,cardtype;
+
+
         protected void onPreExecute(){}
 
         protected String doInBackground(String... arg0) {
 
             try {
-
-                URL url = new URL("http://54.91.189.21:3500/AddOrg/"); // here is your URL path
+                //address userAddress, string cardType, string name, string email, string addr, string mno, string adhaarnumber
+                URL url = new URL("http://"+new Constants().ServerIP+":3800/"+method); // here is your URL path
 
                 JSONObject postDataParams = new JSONObject();
-                postDataParams.put("orgAddress","0x26aA62a120Bc9183290639A0980Ce88c51f0Ba2a");
-                postDataParams.put("name", semail);
-                postDataParams.put("address1",smno);
-                postDataParams.put("address2",saddress);
-                postDataParams.put("city","city");
-                postDataParams.put("state","state");
-                postDataParams.put("country","country");
-                postDataParams.put("website","website");
-                postDataParams.put("isAdmin",true);
-                postDataParams.put("isVendor",true);
-                postDataParams.put("isKYCApprover",true);
+                postDataParams.put("userAddress",new Constants().Address);
+                postDataParams.put("cardType", cardtype);
+                postDataParams.put("name","");
+                postDataParams.put("email",email.getText().toString());
+                postDataParams.put("addr",address.getText().toString());
+                postDataParams.put("mno",mno.getText().toString());
+                if(cardtype.equals("simple")){
+                    postDataParams.put("adhaarnumber","");
+                }
+                else if(cardtype.equals("id")){
+                    postDataParams.put("adhaarnumber",adhaarnumber.getText().toString());
+                }
+
                 Log.e("params",postDataParams.toString());
 
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();

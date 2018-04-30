@@ -29,8 +29,8 @@ public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.MyViewHolder
 
     private Context mContext;
     private List<Cards> cardsList;
-    private String email,mno,address;
-    public String price,socketindex;
+    private String subscription;
+    public String price,socketindex,action,transactiontype;
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         public ImageView image;
@@ -54,13 +54,13 @@ public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.MyViewHolder
         this.cardsList = cardList;
     }
 
-    public CardsAdapter(Context mContext, List<Cards> cardList,String email,String mno,String address, String price, String socketindex) {
+    public CardsAdapter(Context mContext, List<Cards> cardList,String subscription,String transactiontype, String price,String action, String socketindex) {
         this.mContext = mContext;
         this.cardsList = cardList;
-        this.email = email;
-        this.mno = mno;
-        this.address = address;
+        this.subscription = subscription;
         this.price = price;
+        this.action = action;
+        this.transactiontype = transactiontype;
         this.socketindex = socketindex;
     }
 
@@ -80,31 +80,53 @@ public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.MyViewHolder
         holder.name.setText(cards.getcard_name());
 
 
-
-        if(Objects.equals(cards.getCardtype(), "identity")){
+        if(action.equals("view")){
             holder.name.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent i = new Intent(mContext,YourInformation.class);
-
-                    i.putExtra("price",price);
-                    i.putExtra("socketindex",socketindex);
-                    System.out.println("socket: "+socketindex);
-
+                    Intent i = new Intent(mContext, ShowCardDetails.class);
+                    i.putExtra("cardname", cards.getcard_name());
                     mContext.startActivity(i);
                 }
             });
-        }
-        if(Objects.equals(cards.getCardtype(), "payment")){
-            holder.name.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent i = new Intent(mContext,CardBalance.class);
 
-                    mContext.startActivity(i);
-                }
-            });
         }
+        else {
+            if (Objects.equals(transactiontype, "payment")) {
+                holder.name.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent i = new Intent(mContext, YourInformation.class);
+
+                        i.putExtra("price", price);
+                        i.putExtra("transactiontype", "payment");
+                        i.putExtra("cardname", cards.getcard_name());
+                        i.putExtra("socketindex", socketindex);
+
+
+                        mContext.startActivity(i);
+                    }
+                });
+            }
+
+            else if (Objects.equals(transactiontype, "subscription")) {
+                holder.name.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent i = new Intent(mContext, YourInformation.class);
+
+                        i.putExtra("subscription", subscription);
+                        i.putExtra("cardname", cards.getcard_name());
+                        i.putExtra("transactiontype", "subscription");
+                        i.putExtra("socketindex", socketindex);
+
+                        mContext.startActivity(i);
+                    }
+                });
+            }
+        }
+
+
 
 
 

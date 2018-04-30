@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Authex.iml" filepath="$PROJECT_DIR$/Authex.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Authox.iml" filepath="$PROJECT_DIR$/Authox.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
