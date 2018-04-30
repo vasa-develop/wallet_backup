@@ -93,6 +93,9 @@ class ContractApi extends AsyncTask<String, Void, String> {
         } catch (IOException e1) {
             e1.printStackTrace();
         }
+        catch (NullPointerException e){
+
+        }
 
         System.out.println("OrgInfo: "+OutPut);
 

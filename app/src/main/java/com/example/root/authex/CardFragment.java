@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -182,7 +183,17 @@ public class CardFragment extends Fragment {
         @Override
         protected void onPostExecute(String s) {
             try {
-                JSONObject jsonObject = new JSONObject(details);
+
+                //Check for the internet connection
+
+                JSONObject jsonObject = null;
+                try{
+                    jsonObject = new JSONObject(details);
+                }catch (NullPointerException e){
+                    Toast.makeText(getContext(),"Please turn on your Internet connection",Toast.LENGTH_LONG).show();
+                    return;
+                }
+
                 JSONArray jsonArray = jsonObject.getJSONArray("result");
                 if(jsonArray.getString(0)!=null){
                     if(cardType.equals("id")){
