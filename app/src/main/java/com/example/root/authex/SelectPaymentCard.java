@@ -93,7 +93,7 @@ public class SelectPaymentCard extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(transactiontype.equals("payment")){
-                    ContractApi contractApi = new ContractApi("coin","transfer","0x30f28686aef33adbfbc13797b1d9f5a2f2759f56/"+price);
+                    ContractApi contractApi = new ContractApi("coin","transfer","0x83c775C8c6784023e7443C0806ddd9878b76eb5C/"+price);
                     contractApi.execute();
 
                     Toast.makeText(getApplicationContext(),"Transaction in process",Toast.LENGTH_SHORT).show();

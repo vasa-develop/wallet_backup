@@ -74,4 +74,10 @@ public class AddnScanCards extends AppCompatActivity implements CardFragment.OnF
     public void onFragmentInteraction(Uri uri) {
 
     }
+
+    @Override
+    public void onBackPressed() {
+
+
+    }
 }

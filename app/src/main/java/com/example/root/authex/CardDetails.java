@@ -117,7 +117,7 @@ public class CardDetails extends AppCompatActivity {
                 //Toast.makeText(getApplicationContext(),"Email verification status: "+String.valueOf(firebaseUser.isEmailVerified()),Toast.LENGTH_SHORT).show();
 
                 try {
-                    /*ActionCodeSettings actionCodeSettings =
+                    ActionCodeSettings actionCodeSettings =
                             ActionCodeSettings.newBuilder()
                                     // URL you want to redirect back to. The domain (www.example.com) for this
                                     // URL must be whitelisted in the Firebase Console.
@@ -126,33 +126,18 @@ public class CardDetails extends AppCompatActivity {
                                     .setHandleCodeInApp(true)
                                     .setAndroidPackageName(
                                             "com.example.root.authex",
-                                            true, *//* installIfNotAvailable *//*
-                                            "12"    *//* minimumVersion *//*)
-                                    .build();*/
+                                            true,
+                                            "12"     )
+                                    .build();
 
-                    if(!verificationEmailSent) {
-                        startActivityForResult(AuthUI.getInstance().createSignInIntentBuilder()
-                                .setAllowNewEmailAccounts(true).build(), PER_LOGIN);
-                    }
-                    else {
-
-                        mAuth.getCurrentUser().reload().addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if(firebaseUser.isEmailVerified()){
-                                    verify_email.setText("email verified!");
-                                    verify_email.setTextColor(Color.parseColor("#00ff00"));
-                                    verify_email.setEnabled(false);
+                    FirebaseAuth auth = FirebaseAuth.getInstance();
+                    auth.sendSignInLinkToEmail("vasa.develop@gmail.com", actionCodeSettings)
+                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    Log.d(TAG, "Email sent.");
                                 }
-                                else {
-                                    verify_email.setText("email not verified! Check after few seconds");
-                                }
-
-                            }
-                        });
-
-
-                    }
+                            });
 
                 }
                 catch (java.lang.IllegalArgumentException e){

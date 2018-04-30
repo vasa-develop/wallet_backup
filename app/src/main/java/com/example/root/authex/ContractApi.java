@@ -1,9 +1,11 @@
 package com.example.root.authex;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.util.Log;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -24,6 +26,7 @@ import java.util.Objects;
 class ContractApi extends AsyncTask<String, Void, String> {
 
     public String method,parameters,OutPut,type,port;
+
 
     public ContractApi(String type,String method, String parameters){
         this.method = method;
@@ -74,12 +77,16 @@ class ContractApi extends AsyncTask<String, Void, String> {
             e1.printStackTrace();
         }
         try {
+
             while ((line = br.readLine()) != null) {
                 sb.append(line);
                 OutPut = sb.toString();
             }
         } catch (IOException e1) {
             e1.printStackTrace();
+        }
+        catch (NullPointerException e){
+
         }
         try {
             br.close();

@@ -147,6 +147,9 @@ public class ThankYou extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
 
 
+    }
 }
